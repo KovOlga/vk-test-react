@@ -1,10 +1,7 @@
 import styles from "./app.module.css";
 import { useState, useEffect } from "react";
-import TowerSelect from "../tower-select/tower-select";
-import FloorSelect from "../floor-select/floor-select";
-import RoomSelect from "../room-select/room-select";
-import DateSelect from "../date-select/date-select";
-import TimeSelect from "../time-select/time-select";
+import Place from "../place/place";
+import DateTime from "../date-time/date-time";
 
 function App() {
   const [textAreaState, setTextAreaState] = useState("");
@@ -35,14 +32,11 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={handleFormSubmit}>
+      <form className={styles.form} onSubmit={handleFormSubmit}>
         <h1>Выбор переговорной</h1>
 
-        <TowerSelect />
-        <FloorSelect />
-        <RoomSelect />
-        <DateSelect />
-        <TimeSelect />
+        <Place />
+        <DateTime />
 
         <div>
           <h2>Поле для комментария</h2>
@@ -53,10 +47,12 @@ function App() {
           />
         </div>
 
-        <button type="submit">Отправить</button>
-        <button type="reset" onClick={resetForm}>
-          Очистить
-        </button>
+        <div className={styles.handlers}>
+          <button type="submit">Отправить</button>
+          <button type="reset" onClick={resetForm}>
+            Очистить
+          </button>
+        </div>
       </form>
     </div>
   );
