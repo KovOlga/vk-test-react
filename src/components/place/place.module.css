@@ -5,6 +5,10 @@
   gap: 50px;
 }
 
+.title {
+  font-weight: 400;
+}
+
 .label {
   position: relative;
 }
