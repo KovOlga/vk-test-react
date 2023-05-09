@@ -29,13 +29,3 @@ export function getBookingData() {
       });
   };
 }
-
-export function setFormNewData(field, value) {
-  return function (dispatch) {
-    dispatch({
-      type: SET_FORM_DATA_ON_CHANGE,
-      field,
-      value,
-    });
-  };
-}

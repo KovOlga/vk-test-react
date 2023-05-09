@@ -33,7 +33,7 @@
 .select {
   box-sizing: border-box;
   display: block;
-  width: 200px;
+  width: 130px;
   outline: none;
   box-shadow: 0 10px 25px rgba(143, 129, 129, 0.1);
   font-size: 17px;
@@ -43,6 +43,7 @@
   outline: 1px solid #e5e9e9;
   border: none;
   appearance: none;
+  cursor: pointer;
 }
 
 .customArrow {

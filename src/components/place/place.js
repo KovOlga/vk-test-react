@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styles from "./place.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookingData } from "../../services/actions/index";
-import { setFormNewData } from "../../services/actions";
+import { SET_FORM_DATA_ON_CHANGE } from "../../services/actions/index";
 
 const Place = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,11 @@ const Place = () => {
   const confRoom = useSelector((store) => store.confRoomForm.form.confRoom);
 
   const handleFormChange = (e) => {
-    dispatch(setFormNewData(e.target.name, e.target.value));
+    dispatch({
+      type: SET_FORM_DATA_ON_CHANGE,
+      name: e.target.name,
+      value: e.target.value,
+    });
   };
 
   useEffect(() => {
@@ -34,8 +38,8 @@ const Place = () => {
             value={tower}
             onChange={handleFormChange}
           >
-            <option value="A">Башня А</option>
-            <option value="B">Башня Б</option>
+            <option value="A">А</option>
+            <option value="B">Б</option>
           </select>
           <span className={styles.customArrow}></span>
         </label>
@@ -55,7 +59,7 @@ const Place = () => {
               floorArr.map((floorNumber) => {
                 return (
                   <option key={floorNumber} value={floorNumber}>
-                    Этаж {floorNumber}
+                    {floorNumber}
                   </option>
                 );
               })}
@@ -78,7 +82,7 @@ const Place = () => {
               confRoomArr.map((confRoomNumber) => {
                 return (
                   <option key={confRoomNumber} value={confRoomNumber}>
-                    Переговорка №: {confRoomNumber}
+                    №: {confRoomNumber}
                   </option>
                 );
               })}

@@ -54,12 +54,11 @@ export const formReducer = (state = initialState, action) => {
       };
     }
     case SET_FORM_DATA_ON_CHANGE: {
-      console.log(action);
       return {
         ...state,
         form: {
           ...state.form,
-          [action.field]: action.value,
+          [action.name]: action.value,
         },
       };
     }
