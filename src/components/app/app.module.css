@@ -4,18 +4,20 @@
 }
 
 .form {
+  box-sizing: border-box;
   max-width: 600px;
   border: 1px solid rgb(229, 235, 228);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   align-items: flex-start;
   padding-left: 50px;
   padding-bottom: 50px;
   padding-top: 40px;
-  padding-right: 30px;
+  padding-right: 140px;
   box-shadow: 0 10px 25px rgba(143, 129, 129, 0.1);
+  background: #fffff9;
 }
 
 .from__title {
@@ -28,8 +30,8 @@
 
 .textarea {
   display: block;
-  width: 400px;
-  height: 100px;
+  width: 410px;
+  height: 120px;
   padding: 12px 15px;
   box-sizing: border-box;
   border-radius: 4px;

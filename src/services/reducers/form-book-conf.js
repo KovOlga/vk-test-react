@@ -2,6 +2,7 @@ import {
   GET_CONF_DATA_REQUEST,
   GET_CONF_DATA_SUCCESS,
   GET_CONF_DATA_FAILED,
+  SET_FORM_DATA_ON_CHANGE,
 } from "../actions";
 
 const initialState = {
@@ -42,11 +43,6 @@ export const formReducer = (state = initialState, action) => {
         dataLoading: false,
         floorData: action.defaultFloorList,
         confRoomData: action.defaultConfRoomList,
-        // form: {
-        //   ...state.form,
-        //   floor: action.defaultFloorList,
-        //   confRoom: action.defaultConfRoomList,
-        // },
       };
     }
     case GET_CONF_DATA_FAILED: {
@@ -55,6 +51,16 @@ export const formReducer = (state = initialState, action) => {
         dataRequest: false,
         dataFailed: true,
         dataLoading: false,
+      };
+    }
+    case SET_FORM_DATA_ON_CHANGE: {
+      console.log(action);
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          [action.field]: action.value,
+        },
       };
     }
     default:

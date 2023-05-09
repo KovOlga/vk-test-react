@@ -1,5 +1,5 @@
 .place {
-  width: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -33,7 +33,7 @@
 .select {
   box-sizing: border-box;
   display: block;
-  width: 150px;
+  width: 200px;
   outline: none;
   box-shadow: 0 10px 25px rgba(143, 129, 129, 0.1);
   font-size: 17px;

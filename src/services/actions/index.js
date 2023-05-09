@@ -4,9 +4,11 @@ export const GET_CONF_DATA_REQUEST = "GET_CONF_DATA_REQUEST";
 export const GET_CONF_DATA_SUCCESS = "GET_CONF_DATA_SUCCESS";
 export const GET_CONF_DATA_FAILED = "GET_CONF_DATA_FAILED";
 
+export const SET_FORM_DATA_ON_CHANGE = "SET_FORM_DATA_ON_CHANGE";
+
 const api = new Api();
 
-export function getConfRoomData() {
+export function getBookingData() {
   return function (dispatch) {
     dispatch({
       type: GET_CONF_DATA_REQUEST,
@@ -25,5 +27,15 @@ export function getConfRoomData() {
           type: GET_CONF_DATA_FAILED,
         });
       });
+  };
+}
+
+export function setFormNewData(field, value) {
+  return function (dispatch) {
+    dispatch({
+      type: SET_FORM_DATA_ON_CHANGE,
+      field,
+      value,
+    });
   };
 }

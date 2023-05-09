@@ -12,8 +12,6 @@ const DateTime = () => {
       defaultTimeList.push(`${i}:00`);
       defaultTimeList.push(`${i}:30`);
     }
-
-    // console.log(hours);
   };
 
   createDefaultTimeList();

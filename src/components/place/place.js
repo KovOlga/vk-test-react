@@ -1,31 +1,24 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./place.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getConfRoomData } from "../../services/actions/index";
+import { getBookingData } from "../../services/actions/index";
+import { setFormNewData } from "../../services/actions";
 
 const Place = () => {
   const dispatch = useDispatch();
   const floorArr = useSelector((store) => store.confRoomForm.floorData);
   const confRoomArr = useSelector((store) => store.confRoomForm.confRoomData);
 
-  const [tower, setTower] = useState("A");
+  const tower = useSelector((store) => store.confRoomForm.form.tower);
+  const floor = useSelector((store) => store.confRoomForm.form.floor);
+  const confRoom = useSelector((store) => store.confRoomForm.form.confRoom);
 
-  const handleTowerSelect = (e) => {
-    setTower(e.target.value);
-  };
-
-  const [floor, setFloor] = useState("3");
-  const handleFloorSelect = (e) => {
-    setFloor(e.target.value);
-  };
-
-  const [confRoom, setConfRoom] = useState("1");
-  const handleConfRomSelect = (e) => {
-    setConfRoom(e.target.value);
+  const handleFormChange = (e) => {
+    dispatch(setFormNewData(e.target.name, e.target.value));
   };
 
   useEffect(() => {
-    dispatch(getConfRoomData());
+    dispatch(getBookingData());
   }, []);
 
   return (
@@ -39,7 +32,7 @@ const Place = () => {
             id="tower"
             name="tower"
             value={tower}
-            onChange={handleTowerSelect}
+            onChange={handleFormChange}
           >
             <option value="A">Башня А</option>
             <option value="B">Башня Б</option>
@@ -56,7 +49,7 @@ const Place = () => {
             id="floor"
             name="floor"
             value={floor}
-            onChange={handleFloorSelect}
+            onChange={handleFormChange}
           >
             {floorArr.length > 0 &&
               floorArr.map((floorNumber) => {
@@ -79,7 +72,7 @@ const Place = () => {
             id="confRoom"
             name="confRoom"
             value={confRoom}
-            onChange={handleConfRomSelect}
+            onChange={handleFormChange}
           >
             {confRoomArr.length > 0 &&
               confRoomArr.map((confRoomNumber) => {

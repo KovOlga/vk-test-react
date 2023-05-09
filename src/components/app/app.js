@@ -1,5 +1,5 @@
 import styles from "./app.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Place from "../place/place";
 import DateTime from "../date-time/date-time";
 
