@@ -31,9 +31,9 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className={styles.app}>
       <form className={styles.form} onSubmit={handleFormSubmit}>
-        <h1>Выбор переговорной</h1>
+        <h1 className={styles.from__title}>Бронирование переговорной</h1>
 
         <Place />
         <DateTime />

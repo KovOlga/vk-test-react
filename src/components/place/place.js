@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./place.module.css";
 
 const Place = () => {
   const [tower, setTower] = useState("A");
@@ -27,13 +28,21 @@ const Place = () => {
 
   return (
     <div>
-      <div>
-        <h2>Выбор башни</h2>
-
-        <select name="tower" value={tower} onChange={handleTowerSelect}>
-          <option value="A">Башня А</option>
-          <option value="B">Башня Б</option>
-        </select>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Выбор башни</h2>
+        <label htmlFor="tower" className={styles.label}>
+          <select
+            className={styles.select}
+            id="tower"
+            name="tower"
+            value={tower}
+            onChange={handleTowerSelect}
+          >
+            <option value="A">Башня А</option>
+            <option value="B">Башня Б</option>
+          </select>
+          <span className={styles.customArrow}></span>
+        </label>
       </div>
 
       <div>

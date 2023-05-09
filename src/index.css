@@ -1,13 +1,34 @@
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter/Inter-Black.woff") format("woff"),
+    url("./fonts/Inter/Inter-Black.woff2") format("woff2");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter/Inter-Bold.woff") format("woff"),
+    url("./fonts/Inter/Inter-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter/Inter-Regular.woff") format("woff"),
+    url("./fonts/Inter/Inter-Regular.woff2") format("woff2");
+  font-weight: normal;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
