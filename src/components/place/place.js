@@ -3,8 +3,9 @@ import styles from "./place.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookingData } from "../../services/actions/index";
 import { SET_FORM_DATA_ON_CHANGE } from "../../services/actions/index";
+import { memo } from "react";
 
-const Place = () => {
+const Place = memo(() => {
   const dispatch = useDispatch();
   const floorArr = useSelector((store) => store.confRoomForm.floorData);
   const confRoomArr = useSelector((store) => store.confRoomForm.confRoomData);
@@ -82,7 +83,7 @@ const Place = () => {
               confRoomArr.map((confRoomNumber) => {
                 return (
                   <option key={confRoomNumber} value={confRoomNumber}>
-                    №: {confRoomNumber}
+                    № {confRoomNumber}
                   </option>
                 );
               })}
@@ -92,6 +93,6 @@ const Place = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Place;

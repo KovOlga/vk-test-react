@@ -2,28 +2,33 @@ import styles from "./app.module.css";
 import { useState } from "react";
 import Place from "../place/place";
 import DateTime from "../date-time/date-time";
+import { useSelector, useDispatch } from "react-redux";
+import { submitBooking } from "../../services/actions";
 
 function App() {
+  const dispatch = useDispatch();
   const [textAreaState, setTextAreaState] = useState("");
-
-  const resetForm = () => {
-    console.log("reset");
-  };
 
   const handleTextAreaChange = (e) => {
     setTextAreaState(e.target.value);
   };
 
+  const resetForm = () => {
+    console.log("reset");
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    dispatch(submitBooking());
     const newBooking = {
       tower: e.target.elements.tower.value,
       floor: e.target.elements.floor.value,
       confRoom: e.target.elements.confRoom.value,
       // data: date,
       time: {
-        from: e.target.elements.timeFrom.value,
-        to: e.target.elements.timeTo.value,
+        from: e.target.elements.from.value,
+        to: e.target.elements.to.value,
       },
       comment: e.target.elements.comment.value,
     };

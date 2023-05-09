@@ -29,8 +29,11 @@
 .time {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-end;
   gap: 20px;
+  position: relative;
+  height: 75px;
 }
 
 .time__item {
@@ -44,4 +47,20 @@
   padding: 0;
   font-weight: 400;
   font-size: 15px;
+}
+
+.input {
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(143, 129, 129, 0.1);
+  background: inherit;
+  outline: 1px solid #e5e9e9;
+  padding: 5px;
+}
+
+.error {
+  font-size: 13px;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
 }

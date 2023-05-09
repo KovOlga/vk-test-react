@@ -48,13 +48,22 @@ class Api extends Component {
   };
 
   postNewBooking = (bookingData) => {
-    return this._request(`${this.baseUrl}`, {
-      method: "POST",
-      headers: this.headers,
-      body: JSON.stringify({
-        data: bookingData,
-      }),
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("booked");
+      }, 1000);
     });
+
+    promise.then(
+      (result) => {
+        return result;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return promise;
   };
 }
 
