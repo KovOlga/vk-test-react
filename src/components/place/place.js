@@ -29,9 +29,9 @@ const Place = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Выбор места</h2>
-      <div className={styles.container}>
+    <div className={styles.place}>
+      <h2 className={styles.place__title}>Выбор места</h2>
+      <div className={styles.field}>
         <h2 className={styles.title}>Башня</h2>
         <label htmlFor="tower" className={styles.label}>
           <select
@@ -48,7 +48,7 @@ const Place = () => {
         </label>
       </div>
 
-      <div className={styles.container}>
+      <div className={styles.field}>
         <h2 className={styles.title}>Этаж</h2>
         <label htmlFor="floor" className={styles.label}>
           <select
@@ -71,7 +71,7 @@ const Place = () => {
         </label>
       </div>
 
-      <div className={styles.container}>
+      <div className={styles.field}>
         <h2 className={styles.title}>Переговорка</h2>
         <label htmlFor="confRoom" className={styles.label}>
           <select

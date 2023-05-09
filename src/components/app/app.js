@@ -38,18 +38,19 @@ function App() {
         <Place />
         <DateTime />
 
-        <div>
-          <h2>Поле для комментария</h2>
-          <textarea
-            name="comment"
-            value={textAreaState}
-            onChange={handleTextAreaChange}
-          />
-        </div>
+        <textarea
+          className={styles.textarea}
+          name="comment"
+          value={textAreaState}
+          onChange={handleTextAreaChange}
+          placeholder="Оставьте комментарий к бронированию"
+        />
 
         <div className={styles.handlers}>
-          <button type="submit">Отправить</button>
-          <button type="reset" onClick={resetForm}>
+          <button className={styles.button} type="submit">
+            Отправить
+          </button>
+          <button className={styles.button} type="reset" onClick={resetForm}>
             Очистить
           </button>
         </div>

@@ -1,20 +1,62 @@
 .app {
-  background-color: #f2f2f2;
+  background-color: #fcfcf6;
+  margin-top: 50px;
 }
 
 .form {
   max-width: 600px;
-  border: 1px solid red;
+  border: 1px solid rgb(229, 235, 228);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
   padding-left: 50px;
+  padding-bottom: 50px;
+  padding-top: 40px;
+  padding-right: 30px;
+  box-shadow: 0 10px 25px rgba(143, 129, 129, 0.1);
 }
 
 .from__title {
   font-weight: 700;
-  font-size: 36px;
+  font-size: 27px;
   line-height: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.textarea {
+  display: block;
+  width: 400px;
+  height: 100px;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  resize: none;
+  outline: 2px solid #ccc;
+  border: none;
+}
+
+.textarea:focus {
+  outline: 2px solid #e0e8df;
+}
+
+.handlers {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.button {
+  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: 400;
+  border: none;
+  outline: 2px solid #ebefec;
+  background-color: inherit;
+  padding: 5px;
+  box-shadow: 0 10px 25px rgba(143, 129, 129, 0.1);
+  cursor: pointer;
+  border-radius: 4px;
 }
