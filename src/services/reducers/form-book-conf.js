@@ -11,6 +11,7 @@ import {
   SUBMIT_BOOKING_FAILED,
   WAS_ERROR,
   SET_MODAL_VISIBILITY,
+  RESET_FORM,
 } from "../actions";
 
 const initialState = {
@@ -146,6 +147,22 @@ export const formReducer = (state = initialState, action) => {
       return {
         ...state,
         wasError: action.payload,
+      };
+    }
+    case RESET_FORM: {
+      return {
+        ...state,
+        form: {
+          tower: "А",
+          floor: "4",
+          confRoom: "5",
+          date: new Date(),
+          time: {
+            from: "09:00",
+            to: "10:00",
+          },
+          comment: "",
+        },
       };
     }
     default:

@@ -2,10 +2,9 @@ import { useEffect } from "react";
 import styles from "./place.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookingData } from "../../services/actions/index";
-import { SET_FORM_DATA_ON_CHANGE } from "../../services/actions/index";
 import { memo } from "react";
 
-const Place = memo(() => {
+const Place = memo(({ handleInputChange }) => {
   const dispatch = useDispatch();
   const floorArr = useSelector((store) => store.confRoomForm.floorData);
   const confRoomArr = useSelector((store) => store.confRoomForm.confRoomData);
@@ -13,14 +12,6 @@ const Place = memo(() => {
   const tower = useSelector((store) => store.confRoomForm.form.tower);
   const floor = useSelector((store) => store.confRoomForm.form.floor);
   const confRoom = useSelector((store) => store.confRoomForm.form.confRoom);
-
-  const handleFormChange = (e) => {
-    dispatch({
-      type: SET_FORM_DATA_ON_CHANGE,
-      name: e.target.name,
-      value: e.target.value,
-    });
-  };
 
   useEffect(() => {
     dispatch(getBookingData());
@@ -37,7 +28,7 @@ const Place = memo(() => {
             id="tower"
             name="tower"
             value={tower}
-            onChange={handleFormChange}
+            onChange={handleInputChange}
           >
             <option value="A">А</option>
             <option value="B">Б</option>
@@ -54,7 +45,7 @@ const Place = memo(() => {
             id="floor"
             name="floor"
             value={floor}
-            onChange={handleFormChange}
+            onChange={handleInputChange}
           >
             {floorArr.length > 0 &&
               floorArr.map((floorNumber) => {
@@ -77,7 +68,7 @@ const Place = memo(() => {
             id="confRoom"
             name="confRoom"
             value={confRoom}
-            onChange={handleFormChange}
+            onChange={handleInputChange}
           >
             {confRoomArr.length > 0 &&
               confRoomArr.map((confRoomNumber) => {
