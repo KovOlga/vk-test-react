@@ -4,9 +4,13 @@ import Place from "../place/place";
 import DateTime from "../date-time/date-time";
 import { useSelector, useDispatch } from "react-redux";
 import { submitBooking } from "../../services/actions";
+import Modal from "../modal/modal";
+
+const modalRoot = document.getElementById("react-modals");
 
 function App() {
   const dispatch = useDispatch();
+  const wasError = useSelector((store) => store.confRoomForm.wasError);
   const [textAreaState, setTextAreaState] = useState("");
 
   const handleTextAreaChange = (e) => {
@@ -21,6 +25,10 @@ function App() {
     e.preventDefault();
 
     dispatch(submitBooking());
+  };
+
+  const onModalClose = () => {
+    console.log("close");
   };
 
   return (
@@ -48,6 +56,11 @@ function App() {
           </button>
         </div>
       </form>
+      <Modal onClose={onModalClose} container={modalRoot}>
+        <div className={styles.modal}>
+          <h2 className={styles.modal__text}>Произошла ошибка</h2>
+        </div>
+      </Modal>
     </div>
   );
 }

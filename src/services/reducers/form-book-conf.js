@@ -9,6 +9,7 @@ import {
   SUBMIT_BOOKING_REQUEST,
   SUBMIT_BOOKING_SUCCESS,
   SUBMIT_BOOKING_FAILED,
+  WAS_ERROR,
 } from "../actions";
 
 const initialState = {
@@ -34,6 +35,8 @@ const initialState = {
   bookingRequest: false,
   bookingLoading: false,
   bookingFailed: false,
+
+  wasError: false,
 };
 
 export const formReducer = (state = initialState, action) => {
@@ -129,6 +132,12 @@ export const formReducer = (state = initialState, action) => {
         bookingRequest: false,
         bookingFailed: true,
         dataLoading: false,
+      };
+    }
+    case WAS_ERROR: {
+      return {
+        ...state,
+        wasError: action.payload,
       };
     }
     default:

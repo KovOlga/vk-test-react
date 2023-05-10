@@ -14,6 +14,8 @@ export const SUBMIT_BOOKING_REQUEST = "SUBMIT_BOOKING_REQUEST";
 export const SUBMIT_BOOKING_SUCCESS = "SUBMIT_BOOKING_SUCCESS";
 export const SUBMIT_BOOKING_FAILED = "SUBMIT_BOOKING_FAILED";
 
+export const WAS_ERROR = "WAS_ERROR";
+
 const api = new Api();
 
 export function getBookingData() {

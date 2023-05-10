@@ -5,6 +5,7 @@ import styles from "./date-time.module.css";
 import {
   SET_FORM_DATA_ON_TIME_CHANGE,
   SET_FORM_DATA_ON_DATE_CHANGE,
+  WAS_ERROR,
 } from "../../services/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { memo } from "react";
@@ -57,14 +58,17 @@ const DateTime = memo(() => {
       showInputError(
         `Выберите время с ${startHourConstraint} до ${endHourConstraint}`
       );
+      dispatch({ type: WAS_ERROR, payload: true });
     }
     if (validateTimeInterval(timeFrom, timeTo)) {
       showInputError("Некорректный интервал");
+      dispatch({ type: WAS_ERROR, payload: true });
     }
   }, [timeFrom, timeTo]);
 
   const handleTimeChange = (e) => {
     hideInputError();
+    dispatch({ type: WAS_ERROR, payload: false });
     dispatch({
       type: SET_FORM_DATA_ON_TIME_CHANGE,
       name: e.target.name,

@@ -1,0 +1,14 @@
+.modal {
+  position: relative;
+  margin: 0 auto;
+  background: #ceb363;
+  border-radius: 40px;
+  width: 500px;
+}
+
+.close_icon {
+  position: absolute;
+  top: 60px;
+  right: 40px;
+  display: flex;
+}
