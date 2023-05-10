@@ -8,7 +8,6 @@ import {
   SET_MODAL_VISIBILITY,
   SET_INITIAL_DATA,
   SET_FORM_DATA_ON_CHANGE,
-  WAS_ERROR,
 } from "../../services/actions";
 import { useCallback } from "react";
 
@@ -31,7 +30,6 @@ function App() {
   const resetForm = (e) => {
     e.preventDefault();
     dispatch({ type: SET_INITIAL_DATA });
-    dispatch({ type: WAS_ERROR, payload: false });
   };
 
   const handleFormSubmit = (e) => {

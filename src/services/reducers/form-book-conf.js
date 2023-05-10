@@ -74,6 +74,7 @@ export const formReducer = (state = initialState, action) => {
           comment: "",
           date: new Date(),
         },
+        wasError: false,
       };
     }
     case GET_BOOKING_DATA_FAILED: {
