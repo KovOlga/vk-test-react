@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Проект: VkBookingTest
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="./src/images/readMe.png" height=550px>
 
-## Available Scripts
+**Описание**
 
-In the project directory, you can run:
+Проект создается на базе React с использованием Redux.
 
-### `npm start`
+Проект был выполнен в рамках профильного задания на стажировку в VK. Содержит:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- выпадающий список с выбором башни(А или Б)
+- выпадающий список с выбором этажа(с 3 по 27)
+- выпадающий список с выбором переговорки(с 1 по 10 на каждом этаже)
+- выбор даты с использованием [DatePicker](https://reactdatepicker.com/)
+- выбор интервала времени с использованием `<input type="time"/>`
+- поле ввода комментария
+- кнопка "Отправить"
+- кнопка "Очистить"
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Возможности**
 
-### `npm test`
+Возможности на данный момент:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Выбор места(башни, этажа и переговорки) в отдельном блоке с помощью выпадающий списков
+- Выбор даты с поомощью DatePicker(ввод вручную или выбор даты из календаря) и времени (вручную или из выпадающего списка)
+- Ввод комментария
+- Очистка формы по клику на кнопку "Очистить", которая устанавливает значения по умолчанию
+- Формирование и вывод в консоль в виде JSON собранных значений полей формы
+- Валидация полей интервала времени(на соответствие рабочему графику, на корректность границ)
+- При наличии ошибки валидации клик по "Отправить" отображает Popup со соответствующим предупреждением и не формирует JSON в консоль
+- При отсутствии ошибки валидации клик по "Отправить" отображает Popup с сообщением об успешной отправке данных и формирует JSON в консоль
+- Модальное окно (Popup) закрывается при клике на крестик, на ModalOverlay или нажатием на клавишу "Esc"
+- С целью избежать лишних ререндеров в проекте используются НОС memo, хук useCallback
 
-### `npm run build`
+**Основные компоненты**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Проект состоит из следующих основных компонентов:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- App - основной компонент, содержащий форму с входящими в нее компонентами и поле комментария
+- Place - компонент с выбором башни, этажа, номера переговорки
+- DateTime - компонент с выбором даты и интервала времени бронирования
+- Modal, ModalOverlay - компоненты, используемые для Popup-a
