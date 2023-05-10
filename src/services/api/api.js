@@ -1,4 +1,3 @@
-import React from "react";
 import { Component } from "react";
 import {
   defaultFloorList,
@@ -32,7 +31,7 @@ class Api extends Component {
           defaultFloorList: defaultFloorList,
           defaultConfRoomList: defaultConfRoomList,
         });
-      }, 500);
+      }, 400);
     });
 
     promise.then(

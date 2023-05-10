@@ -27,11 +27,6 @@ const DateTime = memo(() => {
     inputRef.current.textContent = errorMessage;
   };
 
-  useEffect(() => {
-    const date = new Date();
-    dispatch({ type: SET_FORM_DATA_ON_DATE_CHANGE, date });
-  }, []);
-
   const validateTimeInput = (timeFrom, timeTo) => {
     const isStartIncorrect =
       Number(timeFrom.split(":")[0]) * 60 +
@@ -54,6 +49,7 @@ const DateTime = memo(() => {
   };
 
   useEffect(() => {
+    hideInputError();
     if (validateTimeInput(timeFrom, timeTo)) {
       showInputError(
         `Выберите время с ${startHourConstraint} до ${endHourConstraint}`
@@ -67,7 +63,6 @@ const DateTime = memo(() => {
   }, [timeFrom, timeTo]);
 
   const handleTimeChange = (e) => {
-    hideInputError();
     dispatch({ type: WAS_ERROR, payload: false });
     dispatch({
       type: SET_FORM_DATA_ON_TIME_CHANGE,

@@ -6,7 +6,7 @@ import { submitBooking } from "../../services/actions";
 import Modal from "../modal/modal";
 import {
   SET_MODAL_VISIBILITY,
-  RESET_FORM,
+  SET_INITIAL_DATA,
   SET_FORM_DATA_ON_CHANGE,
 } from "../../services/actions";
 import { useCallback } from "react";
@@ -29,7 +29,7 @@ function App() {
 
   const resetForm = (e) => {
     e.preventDefault();
-    dispatch({ type: RESET_FORM });
+    dispatch({ type: SET_INITIAL_DATA });
   };
 
   const handleFormSubmit = (e) => {
@@ -39,7 +39,6 @@ function App() {
 
   const onModalClose = () => {
     dispatch({ type: SET_MODAL_VISIBILITY, payload: false });
-    dispatch({ type: RESET_FORM });
   };
 
   return (
@@ -73,7 +72,7 @@ function App() {
             <h2 className={styles.modal__text}>
               {wasError
                 ? "Ошибка валидации"
-                : "Вы успешно забукали переговорную"}
+                : "Вы успешно забронировали переговорную"}
             </h2>
           </div>
         </Modal>

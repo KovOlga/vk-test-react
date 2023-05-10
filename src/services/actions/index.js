@@ -17,8 +17,6 @@ export const SUBMIT_BOOKING_FAILED = "SUBMIT_BOOKING_FAILED";
 export const WAS_ERROR = "WAS_ERROR";
 export const SET_MODAL_VISIBILITY = "SET_MODAL_VISIBILITY";
 
-export const RESET_FORM = "RESET_FORM";
-
 const api = new Api();
 
 export function getBookingData() {
@@ -65,6 +63,13 @@ export function submitBooking() {
     dispatch({
       type: SUBMIT_BOOKING_REQUEST,
     });
+    if (getState().confRoomForm.wasError) {
+      dispatch({
+        type: SET_MODAL_VISIBILITY,
+        payload: true,
+      });
+      return;
+    }
     api
       .postNewBooking()
       .then((res) => {
