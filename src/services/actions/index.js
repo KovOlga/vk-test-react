@@ -60,9 +60,6 @@ export function submitBooking() {
   };
 
   return function (dispatch, getState) {
-    dispatch({
-      type: SUBMIT_BOOKING_REQUEST,
-    });
     if (getState().confRoomForm.wasError) {
       dispatch({
         type: SET_MODAL_VISIBILITY,
@@ -70,6 +67,11 @@ export function submitBooking() {
       });
       return;
     }
+
+    dispatch({
+      type: SUBMIT_BOOKING_REQUEST,
+    });
+
     api
       .postNewBooking()
       .then((res) => {
@@ -91,8 +93,6 @@ export function submitBooking() {
           comment: formData.comment,
         };
         console.log(JSON.stringify(newBooking));
-
-        console.log(res);
       })
       .then(() => {
         dispatch({

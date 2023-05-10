@@ -17,7 +17,6 @@ const initialState = {
   dataRequest: false,
   dataLoading: false,
   dataFailed: false,
-  towerData: [],
   floorData: [],
   confRoomData: [],
 
@@ -130,18 +129,18 @@ export const formReducer = (state = initialState, action) => {
         dataLoading: false,
       };
     }
-    case SET_MODAL_VISIBILITY: {
-      return {
-        ...state,
-        isModalOpen: action.payload,
-      };
-    }
     case SUBMIT_BOOKING_FAILED: {
       return {
         ...state,
         bookingRequest: false,
         bookingFailed: true,
         dataLoading: false,
+      };
+    }
+    case SET_MODAL_VISIBILITY: {
+      return {
+        ...state,
+        isModalOpen: action.payload,
       };
     }
     case WAS_ERROR: {

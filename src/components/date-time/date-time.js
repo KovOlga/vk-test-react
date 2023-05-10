@@ -97,17 +97,15 @@ const DateTime = memo(() => {
         <h2 className={styles.field__title}>Дата</h2>
 
         <div className={styles.date}>
-          {date !== "" && (
-            <DatePicker
-              selected={date}
-              onChange={(date) => handleDateChange(date)}
-              dateFormat="dd-MM-yyyy"
-              calendarContainer={MyContainer}
-              className={styles.date__input}
-              shouldCloseOnSelect={false}
-              minDate={new Date()}
-            />
-          )}
+          <DatePicker
+            selected={date}
+            onChange={(date) => handleDateChange(date)}
+            dateFormat="dd-MM-yyyy"
+            calendarContainer={MyContainer}
+            className={styles.date__input}
+            shouldCloseOnSelect={false}
+            minDate={new Date()}
+          />
         </div>
       </div>
 

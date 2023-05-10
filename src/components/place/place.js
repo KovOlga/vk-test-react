@@ -31,7 +31,7 @@ const Place = memo(({ handleInputChange }) => {
             onChange={handleInputChange}
           >
             <option value="A">А</option>
-            <option value="B">Б</option>
+            <option value="Б">Б</option>
           </select>
           <span className={styles.customArrow}></span>
         </label>
