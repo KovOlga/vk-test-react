@@ -1,7 +1,8 @@
 import {
-  GET_CONF_DATA_REQUEST,
-  GET_CONF_DATA_SUCCESS,
-  GET_CONF_DATA_FAILED,
+  GET_BOOKING_DATA_REQUEST,
+  SET_INITIAL_DATA,
+  GET_BOOKING_DATA_SUCCESS,
+  GET_BOOKING_DATA_FAILED,
   SET_FORM_DATA_ON_CHANGE,
   SET_FORM_DATA_ON_TIME_CHANGE,
   SET_FORM_DATA_ON_DATE_CHANGE,
@@ -24,8 +25,8 @@ const initialState = {
     confRoom: "",
     date: "",
     time: {
-      from: "09:00",
-      to: "10:00",
+      from: "",
+      to: "",
     },
     comment: "",
   },
@@ -37,14 +38,14 @@ const initialState = {
 
 export const formReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_CONF_DATA_REQUEST: {
+    case GET_BOOKING_DATA_REQUEST: {
       return {
         ...state,
         dataRequest: true,
         dataLoading: true,
       };
     }
-    case GET_CONF_DATA_SUCCESS: {
+    case GET_BOOKING_DATA_SUCCESS: {
       return {
         ...state,
         dataRequest: false,
@@ -54,7 +55,22 @@ export const formReducer = (state = initialState, action) => {
         confRoomData: action.defaultConfRoomList,
       };
     }
-    case GET_CONF_DATA_FAILED: {
+    case SET_INITIAL_DATA: {
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          tower: "А",
+          floor: "4",
+          confRoom: "5",
+          time: {
+            from: "09:00",
+            to: "10:00",
+          },
+        },
+      };
+    }
+    case GET_BOOKING_DATA_FAILED: {
       return {
         ...state,
         dataRequest: false,

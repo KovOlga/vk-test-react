@@ -12,21 +12,24 @@ import { CalendarContainer } from "react-datepicker";
 
 const DateTime = memo(() => {
   const dispatch = useDispatch();
+  const inputRef = useRef();
   const startHourConstraint = 9;
   const endHourConstraint = 19;
   const timeFrom = useSelector((store) => store.confRoomForm.form.time.from);
   const timeTo = useSelector((store) => store.confRoomForm.form.time.to);
   const date = useSelector((store) => store.confRoomForm.form.date);
 
-  const inputRef = useRef();
-
   const hideInputError = () => {
     inputRef.current.textContent = "";
   };
-
   const showInputError = (errorMessage) => {
     inputRef.current.textContent = errorMessage;
   };
+
+  useEffect(() => {
+    const date = new Date();
+    dispatch({ type: SET_FORM_DATA_ON_DATE_CHANGE, date });
+  }, []);
 
   const validateTimeInput = (timeFrom, timeTo) => {
     const isStartIncorrect =
@@ -60,12 +63,7 @@ const DateTime = memo(() => {
     }
   }, [timeFrom, timeTo]);
 
-  useEffect(() => {
-    const date = new Date();
-    dispatch({ type: SET_FORM_DATA_ON_DATE_CHANGE, date });
-  }, []);
-
-  const onChangeTime = (e) => {
+  const handleTimeChange = (e) => {
     hideInputError();
     dispatch({
       type: SET_FORM_DATA_ON_TIME_CHANGE,
@@ -111,7 +109,7 @@ const DateTime = memo(() => {
               name="from"
               type="time"
               value={timeFrom}
-              onChange={onChangeTime}
+              onChange={handleTimeChange}
             ></input>
           </div>
 
@@ -123,7 +121,7 @@ const DateTime = memo(() => {
               name="to"
               type="time"
               value={timeTo}
-              onChange={onChangeTime}
+              onChange={handleTimeChange}
             ></input>
           </div>
           <span ref={inputRef} className={styles.error}></span>

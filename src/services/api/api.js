@@ -32,7 +32,7 @@ class Api extends Component {
           defaultFloorList: defaultFloorList,
           defaultConfRoomList: defaultConfRoomList,
         });
-      }, 1000);
+      }, 500);
     });
 
     promise.then(
@@ -51,7 +51,7 @@ class Api extends Component {
     const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve("booked");
-      }, 1000);
+      }, 100);
     });
 
     promise.then(

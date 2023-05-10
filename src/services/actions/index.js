@@ -1,8 +1,10 @@
 import Api from "../api/api";
 
-export const GET_CONF_DATA_REQUEST = "GET_CONF_DATA_REQUEST";
-export const GET_CONF_DATA_SUCCESS = "GET_CONF_DATA_SUCCESS";
-export const GET_CONF_DATA_FAILED = "GET_CONF_DATA_FAILED";
+export const GET_BOOKING_DATA_REQUEST = "GET_BOOKING_DATA_REQUEST";
+export const GET_BOOKING_DATA_SUCCESS = "GET_BOOKING_DATA_SUCCESS";
+export const GET_BOOKING_DATA_FAILED = "GET_BOOKING_DATA_FAILED";
+
+export const SET_INITIAL_DATA = "SET_INITIAL_DATA";
 
 export const SET_FORM_DATA_ON_CHANGE = "SET_FORM_DATA_ON_CHANGE";
 export const SET_FORM_DATA_ON_TIME_CHANGE = "SET_FORM_DATA_ON_TIME_CHANGE";
@@ -17,27 +19,44 @@ const api = new Api();
 export function getBookingData() {
   return function (dispatch) {
     dispatch({
-      type: GET_CONF_DATA_REQUEST,
+      type: GET_BOOKING_DATA_REQUEST,
     });
     api
       .getBookingData()
       .then(({ defaultFloorList, defaultConfRoomList }) => {
         dispatch({
-          type: GET_CONF_DATA_SUCCESS,
+          type: GET_BOOKING_DATA_SUCCESS,
           defaultFloorList,
           defaultConfRoomList,
         });
       })
+      .then(() => {
+        dispatch({
+          type: SET_INITIAL_DATA,
+        });
+      })
       .catch((e) => {
         dispatch({
-          type: GET_CONF_DATA_FAILED,
+          type: GET_BOOKING_DATA_FAILED,
         });
       });
   };
 }
 
 export function submitBooking() {
-  return function (dispatch) {
+  const trimTimeZone = (date) => {
+    const currentDate = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const newDate = new Date(
+      `${year}-${month < 10 ? "0" + month : month}-${
+        currentDate < 10 ? "0" + currentDate : currentDate
+      }T00:00:00+00:00`
+    );
+    return newDate;
+  };
+
+  return function (dispatch, getState) {
     dispatch({
       type: SUBMIT_BOOKING_REQUEST,
     });
@@ -47,6 +66,22 @@ export function submitBooking() {
         dispatch({
           type: SUBMIT_BOOKING_SUCCESS,
         });
+
+        const formData = getState().confRoomForm.form;
+
+        const newBooking = {
+          tower: formData.tower,
+          floor: formData.floor,
+          confRoom: formData.confRoom,
+          date: trimTimeZone(formData.date),
+          time: {
+            from: formData.timeFrom,
+            to: formData.timeTo,
+          },
+          comment: formData.textAreaState,
+        };
+        console.log(JSON.stringify(newBooking));
+
         console.log(res);
       })
       .catch((e) => {
