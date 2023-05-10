@@ -15,6 +15,7 @@ export const SUBMIT_BOOKING_SUCCESS = "SUBMIT_BOOKING_SUCCESS";
 export const SUBMIT_BOOKING_FAILED = "SUBMIT_BOOKING_FAILED";
 
 export const WAS_ERROR = "WAS_ERROR";
+export const SET_MODAL_VISIBILITY = "OPEN_MODAL";
 
 const api = new Api();
 
@@ -80,11 +81,17 @@ export function submitBooking() {
             from: formData.timeFrom,
             to: formData.timeTo,
           },
-          comment: formData.textAreaState,
+          // comment: formData.textAreaState,
         };
         console.log(JSON.stringify(newBooking));
 
         console.log(res);
+      })
+      .then(() => {
+        dispatch({
+          type: SET_MODAL_VISIBILITY,
+          payload: true,
+        });
       })
       .catch((e) => {
         dispatch({

@@ -10,6 +10,7 @@ import {
   SUBMIT_BOOKING_SUCCESS,
   SUBMIT_BOOKING_FAILED,
   WAS_ERROR,
+  SET_MODAL_VISIBILITY,
 } from "../actions";
 
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
   bookingFailed: false,
 
   wasError: false,
+  isModalOpen: false,
 };
 
 export const formReducer = (state = initialState, action) => {
@@ -124,6 +126,12 @@ export const formReducer = (state = initialState, action) => {
         bookingRequest: false,
         bookingFailed: false,
         dataLoading: false,
+      };
+    }
+    case SET_MODAL_VISIBILITY: {
+      return {
+        ...state,
+        isModalOpen: action.payload,
       };
     }
     case SUBMIT_BOOKING_FAILED: {

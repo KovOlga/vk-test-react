@@ -5,12 +5,14 @@ import DateTime from "../date-time/date-time";
 import { useSelector, useDispatch } from "react-redux";
 import { submitBooking } from "../../services/actions";
 import Modal from "../modal/modal";
+import { SET_MODAL_VISIBILITY } from "../../services/actions";
 
 const modalRoot = document.getElementById("react-modals");
 
 function App() {
   const dispatch = useDispatch();
   const wasError = useSelector((store) => store.confRoomForm.wasError);
+  const isModalOpen = useSelector((store) => store.confRoomForm.isModalOpen);
   const [textAreaState, setTextAreaState] = useState("");
 
   const handleTextAreaChange = (e) => {
@@ -28,7 +30,7 @@ function App() {
   };
 
   const onModalClose = () => {
-    console.log("close");
+    dispatch({ type: SET_MODAL_VISIBILITY, payload: false });
   };
 
   return (
@@ -56,11 +58,13 @@ function App() {
           </button>
         </div>
       </form>
-      <Modal onClose={onModalClose} container={modalRoot}>
-        <div className={styles.modal}>
-          <h2 className={styles.modal__text}>Произошла ошибка</h2>
-        </div>
-      </Modal>
+      {isModalOpen && (
+        <Modal onClose={onModalClose} container={modalRoot}>
+          <div className={styles.modal}>
+            <h2 className={styles.modal__text}>Произошла ошибка</h2>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }
