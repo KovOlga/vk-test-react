@@ -48,5 +48,6 @@
 - установить [Node.js](https://nodejs.org/en/download) и `npm`
 - перейти в директорию проекта
 - выполнить в терминале `npm i` и дождаться установки всех зависимостей
+- при создании проекта был использован `npm` реестр `https://npm.prakticum-team.ru/`. При проблемах со сборкой\запуском проекта предлагается установить аналогичный реестр командой `npm set registry https://npm.prakticum-team.ru/` или удалить [`package-lock.json`](./package-lock.json) и установить зависимости из публичного registry
 - выполнить в терминале `npm start`
 - Проект будет доступен по адресу [`http://localhost:3000/`](http://localhost:3000/)
