@@ -48,8 +48,21 @@ const DateTime = memo(() => {
     );
   };
 
+  const validateEmptyInput = (value) => {
+    return !value;
+  };
+
+  useEffect(() => {
+    if (validateEmptyInput(date)) {
+      dispatch({ type: WAS_ERROR, payload: true });
+    }
+  }, [date]);
+
   useEffect(() => {
     hideInputError();
+    if (validateEmptyInput(timeFrom) || validateEmptyInput(timeTo)) {
+      dispatch({ type: WAS_ERROR, payload: true });
+    }
     if (validateTimeInput(timeFrom, timeTo)) {
       showInputError(
         `Выберите время с ${startHourConstraint} до ${endHourConstraint}`
@@ -72,6 +85,7 @@ const DateTime = memo(() => {
   };
 
   const handleDateChange = (date) => {
+    dispatch({ type: WAS_ERROR, payload: false });
     dispatch({ type: SET_FORM_DATA_ON_DATE_CHANGE, date });
   };
 
