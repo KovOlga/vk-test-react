@@ -15,7 +15,7 @@ export const SUBMIT_BOOKING_SUCCESS = "SUBMIT_BOOKING_SUCCESS";
 export const SUBMIT_BOOKING_FAILED = "SUBMIT_BOOKING_FAILED";
 
 export const WAS_ERROR = "WAS_ERROR";
-export const SET_MODAL_VISIBILITY = "OPEN_MODAL";
+export const SET_MODAL_VISIBILITY = "SET_MODAL_VISIBILITY";
 
 export const RESET_FORM = "RESET_FORM";
 
@@ -80,8 +80,8 @@ export function submitBooking() {
           confRoom: formData.confRoom,
           date: trimTimeZone(formData.date),
           time: {
-            from: formData.timeFrom,
-            to: formData.timeTo,
+            from: formData.time.from,
+            to: formData.time.to,
           },
           comment: formData.comment,
         };

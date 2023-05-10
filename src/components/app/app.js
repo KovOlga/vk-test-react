@@ -70,7 +70,11 @@ function App() {
       {isModalOpen && (
         <Modal onClose={onModalClose} container={modalRoot}>
           <div className={styles.modal}>
-            <h2 className={styles.modal__text}>Произошла ошибка</h2>
+            <h2 className={styles.modal__text}>
+              {wasError
+                ? "Ошибка валидации"
+                : "Вы успешно забукали переговорную"}
+            </h2>
           </div>
         </Modal>
       )}
