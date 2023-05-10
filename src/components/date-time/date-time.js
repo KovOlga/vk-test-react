@@ -1,6 +1,6 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import styles from "./date-time.module.css";
 import {
   SET_FORM_DATA_ON_TIME_CHANGE,
@@ -12,7 +12,8 @@ import { CalendarContainer } from "react-datepicker";
 
 const DateTime = memo(() => {
   const dispatch = useDispatch();
-
+  const startHourConstraint = 9;
+  const endHourConstraint = 19;
   const timeFrom = useSelector((store) => store.confRoomForm.form.time.from);
   const timeTo = useSelector((store) => store.confRoomForm.form.time.to);
   const date = useSelector((store) => store.confRoomForm.form.date);
@@ -27,16 +28,42 @@ const DateTime = memo(() => {
     inputRef.current.textContent = errorMessage;
   };
 
-  const validateTimeInput = (event) => {
-    return timeFrom.split(":")[0] < 9 || timeTo.split(":")[0] > 18;
+  const validateTimeInput = (timeFrom, timeTo) => {
+    const isStartIncorrect =
+      Number(timeFrom.split(":")[0]) * 60 +
+        Number(timeFrom.split(":")[1]) -
+        startHourConstraint * 60 <
+      0;
+    const isEndIncorrect =
+      Number(timeTo.split(":")[0]) * 60 +
+        Number(timeTo.split(":")[1]) -
+        endHourConstraint * 60 >
+      0;
+    return isStartIncorrect || isEndIncorrect;
   };
 
-  const validateTimeInterval = (event) => {
+  const validateTimeInterval = (timeFrom, timeTo) => {
     return (
-      timeFrom.split(":")[0] * 60 + timeFrom.split(":")[1] >=
-      timeTo.split(":")[0] * 60 + timeTo.split(":")[1]
+      Number(timeFrom.split(":")[0]) * 60 + Number(timeFrom.split(":")[1]) >=
+      Number(timeTo.split(":")[0]) * 60 + Number(timeTo.split(":")[1])
     );
   };
+
+  useEffect(() => {
+    if (validateTimeInput(timeFrom, timeTo)) {
+      showInputError(
+        `Выберите время с ${startHourConstraint} до ${endHourConstraint}`
+      );
+    }
+    if (validateTimeInterval(timeFrom, timeTo)) {
+      showInputError("Некорректный интервал");
+    }
+  }, [timeFrom, timeTo]);
+
+  useEffect(() => {
+    const date = new Date();
+    dispatch({ type: SET_FORM_DATA_ON_DATE_CHANGE, date });
+  }, []);
 
   const onChangeTime = (e) => {
     hideInputError();
@@ -45,23 +72,11 @@ const DateTime = memo(() => {
       name: e.target.name,
       value: e.target.value,
     });
-    console.log(timeFrom, timeTo);
-    if (validateTimeInput(e)) {
-      showInputError("Выберете время с 9 до 19");
-    }
-    if (validateTimeInterval(e)) {
-      showInputError("Поменяйте начало и конец");
-    }
   };
 
   const handleDateChange = (date) => {
     dispatch({ type: SET_FORM_DATA_ON_DATE_CHANGE, date });
   };
-
-  useEffect(() => {
-    const date = new Date();
-    dispatch({ type: SET_FORM_DATA_ON_DATE_CHANGE, date });
-  }, []);
 
   return (
     <div className={styles.dateTime}>

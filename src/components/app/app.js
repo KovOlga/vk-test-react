@@ -36,14 +36,14 @@ function App() {
 
     dispatch(submitBooking());
     const newBooking = {
-      // tower: e.target.elements.tower.value,
-      // floor: e.target.elements.floor.value,
-      // confRoom: e.target.elements.confRoom.value,
+      tower: e.target.elements.tower.value,
+      floor: e.target.elements.floor.value,
+      confRoom: e.target.elements.confRoom.value,
       date: trimTimeZone(date),
-      // time: {
-      // from: e.target.elements.from.value,
-      // to: e.target.elements.to.value,
-      // },
+      time: {
+        from: e.target.elements.from.value,
+        to: e.target.elements.to.value,
+      },
       comment: e.target.elements.comment.value,
     };
     console.log(JSON.stringify(newBooking));
