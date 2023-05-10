@@ -56,6 +56,7 @@
   background: inherit;
   outline: 1px solid #e5e9e9;
   padding: 5px;
+  font-family: inherit;
 }
 
 .error {
@@ -63,4 +64,24 @@
   position: absolute;
   bottom: -10px;
   left: 0;
+}
+
+.date__input {
+  width: 120px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  outline: 2px solid #ccc;
+  border: none;
+  text-align: center;
+  padding: 4px;
+  font-family: inherit;
+}
+
+.date__container {
+  border: none;
+  padding: 1px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px rgba(143, 129, 129, 0.1);
+  outline: 1px solid #e3dfdf;
+  background: #bbc9d4;
 }

@@ -17,19 +17,33 @@ function App() {
     console.log("reset");
   };
 
+  const date = useSelector((store) => store.confRoomForm.form.date);
+
+  const trimTimeZone = (date) => {
+    const currentDate = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const newDate = new Date(
+      `${year}-${month < 10 ? "0" + month : month}-${
+        currentDate < 10 ? "0" + currentDate : currentDate
+      }T00:00:00+00:00`
+    );
+    return newDate;
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
     dispatch(submitBooking());
     const newBooking = {
-      tower: e.target.elements.tower.value,
-      floor: e.target.elements.floor.value,
-      confRoom: e.target.elements.confRoom.value,
-      // data: date,
-      time: {
-        from: e.target.elements.from.value,
-        to: e.target.elements.to.value,
-      },
+      // tower: e.target.elements.tower.value,
+      // floor: e.target.elements.floor.value,
+      // confRoom: e.target.elements.confRoom.value,
+      date: trimTimeZone(date),
+      // time: {
+      // from: e.target.elements.from.value,
+      // to: e.target.elements.to.value,
+      // },
       comment: e.target.elements.comment.value,
     };
     console.log(JSON.stringify(newBooking));

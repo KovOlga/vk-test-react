@@ -4,6 +4,7 @@ import {
   GET_CONF_DATA_FAILED,
   SET_FORM_DATA_ON_CHANGE,
   SET_FORM_DATA_ON_TIME_CHANGE,
+  SET_FORM_DATA_ON_DATE_CHANGE,
   SUBMIT_BOOKING_REQUEST,
   SUBMIT_BOOKING_SUCCESS,
   SUBMIT_BOOKING_FAILED,
@@ -79,6 +80,15 @@ export const formReducer = (state = initialState, action) => {
             ...state.form.time,
             [action.name]: action.value,
           },
+        },
+      };
+    }
+    case SET_FORM_DATA_ON_DATE_CHANGE: {
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          date: action.date,
         },
       };
     }
